@@ -150,6 +150,10 @@ So the way generated image is accessed from generated API at the moment has to b
 - `customTemplates` - optional. Object with keys and values corresponding to format names and template descriptions respectively.
     Template description can be either a `path/to/handlebars/template/file` or template function
 
+- `cssHandlebarsHelpers ` - optional. Container for helpers to register to handlebars for our template Each 
+	* key-value pair is the name of a handlebars helper corresponding to its function
+	* For example, {half: function (num) { return num/2; } will add a handlebars helper that halves numbers
+    
     You can use templates registered here as `format` in "target.css"
 
     For example you can write something like this
@@ -192,6 +196,11 @@ So the way generated image is accessed from generated API at the moment has to b
                     'function_based_template': templateFunction,
                     'handlebars_based_template': path.resolve(__dirname, '../my_handlebars_template.handlebars')
                 },
+                cssHandlebarsHelpers: {
+                		"px2Rem": function(px) {
+							...
+                		}
+                }
                 ...
             })
         ]
